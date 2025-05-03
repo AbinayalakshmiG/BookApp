@@ -1,0 +1,33 @@
+﻿<!-- File: Views/Books/Results.cshtml -->
+@model BookApp.Services.GoogleBooksResponse
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h1>Results</h1>
+@if (Model?.Items?.Any() == true)
+{
+  <div class="row">
+    @foreach (var item in Model.Items)
+    {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          @if (!string.IsNullOrEmpty(item.VolumeInfo.ImageLinks?.Thumbnail))
+          {
+            <img src="@item.VolumeInfo.ImageLinks.Thumbnail"
+                 class="card-img-top"
+                 alt="Cover" />
+          }
+          <div class="card-body">
+            <h5 class="card-title">@item.VolumeInfo.Title</h5>
+            <p class="card-text">@string.Join(", ", item.VolumeInfo.Authors)</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+else
+{
+  <p>No results found.</p>
+}

@@ -1,0 +1,38 @@
+﻿@* File: Views/Books/Delete.cshtml *@
+@model BookApp.Models.Book
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<div class="container py-5">
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Confirm Deletion</h4>
+        <p>Are you sure you want to delete the book titled <strong>@Model.Title</strong>?</p>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <p><strong>Author:</strong> @Model.Author</p>
+            <p><strong>Genre:</strong> @Model.Genre</p>
+            <p>
+                <strong>Rating:</strong>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fa fa-star@(i <= Model.Rating ? " checked" : "")"></span>
+                }
+            </p>
+            <p><strong>Review:</strong> @Model.Review</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" disabled
+                @(Model.Liked ? "checked" : "") />
+                <label class="form-check-label">Liked</label>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

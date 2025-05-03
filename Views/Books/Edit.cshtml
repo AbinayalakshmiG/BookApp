@@ -1,0 +1,64 @@
+﻿@model BookApp.Models.Book
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">Edit Book</h2>
+    <form asp-action="Edit" method="post" novalidate>
+        @* Hidden Id *@
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author" class="form-label"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Genre" class="form-label"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Rating" class="form-label">Rating (1–5)</label>
+            <input asp-for="Rating" type="number" min="1" max="5" class="form-control" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Review" class="form-label"></label>
+            <textarea asp-for="Review" class="form-control"></textarea>
+            <span asp-validation-for="Review" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-4">
+            @* Checkbox first so "true" is posted before the fallback *@
+            <input type="checkbox"
+                   name="Liked"
+                   id="Liked"
+                   value="true"
+                   class="form-check-input"
+            @(Model.Liked ? "checked" : "") />
+
+            @* Hidden fallback posts "false" if unchecked *@
+            <input type="hidden" name="Liked" value="false" />
+
+            <label for="Liked" class="form-check-label">Liked</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

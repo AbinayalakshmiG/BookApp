@@ -1,0 +1,152 @@
+﻿@model IEnumerable<BookApp.Models.Book>
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Analytics";
+}
+
+<div class="container py-5" style="max-height: 80vh; overflow-y: auto;">
+    <h2 class="mb-4">Book Analytics</h2>
+
+    <!-- Chart 1: Books by Genre (Bar) -->
+    <div class="chart-container mb-5 pb-4">
+        <h3>Books by Genre</h3>
+        <p>See how your books are distributed across genres.</p>
+        <canvas id="genreChart"></canvas>
+    </div>
+
+    <!-- Chart 2: Top 5 Authors by Book Count (Line) -->
+    <div class="chart-container mb-5 pb-4">
+        <h3>Top 5 Authors by Book Count</h3>
+        <p>This line chart ranks your most prolific authors.</p>
+        <canvas id="authorChart"></canvas>
+    </div>
+
+    <!-- Chart 3: Rating Distribution (Pie, Smaller) -->
+    <div class="chart-container mb-5 pb-4" style="max-width:400px;">
+        <h3>Rating Distribution</h3>
+        <p>Breakdown of your book ratings from 1 to 5 stars.</p>
+        <canvas id="ratingChart"></canvas>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const books = @Html.Raw(JsonSerializer.Serialize(
+        Model,
+        new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }
+      ));
+
+          const baseOptions = {
+            responsive: true,
+            animation: { duration: 2000, easing: 'easeOutBounce' },
+            plugins: {
+              legend: { display: true, position: 'top', labels: { padding: 20 } },
+              tooltip: { enabled: true }
+            }
+          };
+
+          // ==== Chart 1: Bar (Genre) ====
+          const genreCounts = {};
+          books.forEach(b => {
+            genreCounts[b.genre] = (genreCounts[b.genre] || 0) + 1;
+          });
+          const genres = Object.keys(genreCounts);
+          const counts = genres.map(g => genreCounts[g]);
+
+          new Chart(
+            document.getElementById('genreChart').getContext('2d'),
+            {
+              type: 'bar',
+              data: {
+                labels: genres,
+                datasets: [{
+                  label: 'Number of Books',
+                  data: counts
+                }]
+              },
+              options: {
+                ...baseOptions,
+                scales: {
+                  x: { title: { display: true, text: 'Genre' } },
+                  y: { beginAtZero: true, title: { display: true, text: 'Count' } }
+                }
+              }
+            }
+          );
+
+          // ==== Chart 2: Line (Authors) ====
+          const authorCounts = {};
+          books.forEach(b => {
+            authorCounts[b.author] = (authorCounts[b.author] || 0) + 1;
+          });
+          const topAuthors = Object.entries(authorCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+          const authorLabels = topAuthors.map(a => a[0]);
+          const authorData   = topAuthors.map(a => a[1]);
+
+          new Chart(
+            document.getElementById('authorChart').getContext('2d'),
+            {
+              type: 'line',
+              data: {
+                labels: authorLabels,
+                datasets: [{
+                  label: 'Books Written',
+                  data: authorData,
+                  tension: 0.4,
+                  fill: false
+                }]
+              },
+              options: {
+                ...baseOptions,
+                scales: {
+                  x: { title: { display: true, text: 'Author' } },
+                  y: { beginAtZero: true, title: { display: true, text: 'Books' } }
+                }
+              }
+            }
+          );
+
+          // ==== Chart 3: Pie (Rating) ====
+          const ratingCounts = { '1':0,'2':0,'3':0,'4':0,'5':0 };
+          books.forEach(b => {
+            if (ratingCounts[b.rating] !== undefined)
+              ratingCounts[b.rating]++;
+          });
+          const ratingLabels = Object.keys(ratingCounts);
+          const ratingData   = ratingLabels.map(l => ratingCounts[l]);
+
+          // explicit color palette for pie slices
+          const pieColors = [
+            '#FF6384', '#36A2EB', '#FFCE56',
+            '#4BC0C0', '#9966FF'
+          ];
+
+          new Chart(
+            document.getElementById('ratingChart').getContext('2d'),
+            {
+              type: 'pie',
+              data: {
+                labels: ratingLabels,
+                datasets: [{
+                  label: 'Rating Distribution',
+                  data: ratingData,
+                  backgroundColor: pieColors
+                }]
+              },
+              options: {
+                ...baseOptions,
+                plugins: {
+                  ...baseOptions.plugins,
+                  legend: { ...baseOptions.plugins.legend, position: 'bottom' }
+                }
+              }
+            }
+          );
+        });
+    </script>
+}

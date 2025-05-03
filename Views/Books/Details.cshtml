@@ -1,0 +1,34 @@
+﻿@* File: Views/Books/Details.cshtml *@
+@model BookApp.Models.Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="container py-5">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3 class="card-title">@Model.Title</h3>
+            <p class="card-text"><strong>Author:</strong> @Model.Author</p>
+            <p class="card-text"><strong>Genre:</strong> @Model.Genre</p>
+            <p class="card-text">
+                <strong>Rating:</strong>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    <span class="fa fa-star@(i <= Model.Rating ? " checked" : "")"></span>
+                }
+            </p>
+            <p class="card-text"><strong>Review:</strong> @Model.Review</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" disabled
+                @(Model.Liked ? "checked" : "") />
+                <label class="form-check-label">Liked</label>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary me-2">
+                Edit
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">Back to list</a>
+        </div>
+    </div>
+</div>

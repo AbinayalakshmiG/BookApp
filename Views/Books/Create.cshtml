@@ -1,0 +1,61 @@
+﻿<!-- File: Views/Books/Create.cshtml -->
+@model BookApp.Models.Book
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">Add New Book</h2>
+    <form asp-action="Create" method="post" novalidate>
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author" class="form-label"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Genre" class="form-label"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Rating" class="form-label">Rating (1–5)</label>
+            <input asp-for="Rating" type="number" min="1" max="5" class="form-control" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Review" class="form-label"></label>
+            <textarea asp-for="Review" class="form-control"></textarea>
+            <span asp-validation-for="Review" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            @* Post "true" when checked *@
+            <input type="checkbox"
+                   name="Liked"
+                   id="Liked"
+                   value="true"
+                   class="form-check-input" />
+            @* Always post false if unchecked *@
+            <input type="hidden" name="Liked" value="false" />
+
+            <label for="Liked" class="form-check-label">Liked</label>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Save Book</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
