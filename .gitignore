@@ -1,1 +1,21 @@
-.vs/ 
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build directories
+bin/
+obj/
+
+# Rider
+.idea/
+
+# Other
+*.log
+.vs/     
+*.user   
+*.suo    
+bin/     
+obj/     
+.idea/   
+*.log    
