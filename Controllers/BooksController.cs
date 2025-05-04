@@ -162,5 +162,12 @@ namespace BookApp.Controllers
                                .ToList();
             return View(myBooks);
         }
+
+        // GET: /Books/About
+        [HttpGet]
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }
