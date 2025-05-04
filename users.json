@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Username": "aayushi",
+    "PasswordHash": "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+  },
+  {
+    "Id": 2,
+    "Username": "prajay",
+    "PasswordHash": "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+  },
+  {
+    "Id": 3,
+    "Username": "onisha",
+    "PasswordHash": "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+  },
+  {
+    "Id": 4,
+    "Username": "abinaya",
+    "PasswordHash": "XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+  }
+]

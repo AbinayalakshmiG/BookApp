@@ -5,6 +5,11 @@
 
 <h1>Search Books</h1>
 <form asp-action="SearchResults" method="post" class="d-flex mb-3">
-    <input name="query" class="form-control me-2" placeholder="Search books..." />
+    @Html.AntiForgeryToken()
+    <input name="query"
+           class="form-control me-2"
+           placeholder="Search books..."
+           value="@(ViewBag.Query ?? "")" />
+
     <button type="submit" class="btn btn-primary">Search</button>
 </form>

@@ -1,5 +1,6 @@
 using System;
 using BookApp.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -49,6 +50,15 @@ builder.Services.AddHttpClient<IGoogleBooksService, GoogleBooksService>(client =
 {
     client.BaseAddress = new Uri(builder.Configuration["GoogleBooks:ApiBaseUrl"]!);
 });
+// user service
+builder.Services.AddSingleton<IUserService, JsonUserService>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opts => {
+        opts.LoginPath = "/Account/Login";
+        opts.LogoutPath = "/Account/Logout";
+        opts.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllersWithViews();
 
@@ -61,6 +71,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
+
+// auth
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

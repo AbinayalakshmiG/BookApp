@@ -30,4 +30,7 @@ public class Book
     public int Rating { get; set; }          // 1–5
     public string Review { get; set; } = string.Empty;
     public bool Liked { get; set; }
+
+    // Adding a New link to User.Id
+    public int OwnerId { get; set; }
 }
