@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Booklytics";
+}
+
+<!-- Hero Section -->
+<header class="hero d-flex align-items-center text-white text-center" style="background:url('../assets/images/banner.png') center/cover no-repeat; height:60vh;">
+    <div class="container">
+        <h1 class="display-4">Bookstore Analytics Dashboard</h1>
+        <p class="lead">Immerse yourself in trending books that will captivate your mind.</p>
+        <a asp-controller="Books" asp-action="Index" class="btn btn-outline-light mt-3">Start Browsing</a>
+    </div>
+</header>
+
+<!-- Introduction Section -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4 section-title">INTRODUCTION</h2>
+        <p>Booklytics is an interactive e-commerce analytics dashboard designed for both book lovers and bookstore managers. By integrating data from the Google Books API and capturing real-time user engagement, our platform offers a unique, data-driven book browsing experience. Whether you are searching for your next favorite read or analyzing reading trends, Booklytics brings insights and discovery together in one powerful interface.</p>
+        <a asp-controller="Home" asp-action="About" class="read-more-btn">Read about our team</a>
+    </div>
+</section>
+
+<!-- Purpose Section -->
+<section class="py-5 text-center bg-light">
+    <div class="container">
+        <h2 class="mb-4 section-title">PURPOSE</h2>
+        <p>The purpose of Booklytics is to bridge the gap between book discovery and data intelligence. We aim to create a platform that empowers readers to interact with books through reviews, ratings, and likes, while also providing book owners with meaningful analytics to understand market trends, popular genres, and user preferences.</p>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4 section-title">FEATURES</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/rate-books.png" class="feature-image img-fluid mb-3" alt="Review and Rate Books" />
+                <h5>User Ratings & Reviews</h5>
+                <p>Add your personal take and rate any book directly from the platform. Read and share insights on popular and trending reads.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/like-book.jpeg" class="feature-image img-fluid mb-3" alt="Like Books" />
+                <h5>Like Your Favorites</h5>
+                <p>Mark books you love to influence popularity metrics.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/book-charts.jpeg" class="feature-image img-fluid mb-3" alt="Interactive Charts" />
+                <h5>Interactive Charts</h5>
+                <p>See the popular books, trending genres, and ratings breakdown.</p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/smart-search.jpg" class="feature-image img-fluid mb-3" alt="Smart Search" />
+                <h5>Smart Search (Coming Soon...)</h5>
+                <p>Search books by title, author, or category via the Google Books API.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/gallery3.jpg" class="feature-image img-fluid mb-3" alt="Manager Insights" />
+                <h5>Insights for Managers</h5>
+                <p>View genre trends and reader preferences to make better stocking and marketing decisions.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="~/assets/images/gallery2.jpg" class="feature-image img-fluid mb-3" alt="Real time analytics" />
+                <h5>Real-Time Analytics</h5>
+                <p>Dashboard updates as users interact with books.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-3 bg-light">
+    <div class="container text-center">
+        <p>&copy; 2025 Booklytics. All rights reserved.</p>
+    </div>
+</footer>
