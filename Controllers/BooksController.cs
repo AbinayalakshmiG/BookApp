@@ -163,11 +163,5 @@ namespace BookApp.Controllers
             return View(myBooks);
         }
 
-        // GET: /Books/About
-        [HttpGet]
-        public IActionResult About()
-        {
-            return View();
-        }
     }
 }
