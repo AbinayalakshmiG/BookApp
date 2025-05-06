@@ -94,16 +94,16 @@
                         <p class="mb-1"><strong>Genre:</strong> @book.Genre</p>
                         <p class="mb-1">
                             <strong>Rating:</strong>
-                            @* star icons *@
                             @for (int i = 1; i <= book.Rating; i++)
                             {
-                                <span class="fa fa-star checked"></span>
+                                <i class="fa-solid fa-star text-warning"></i>
                             }
                             @for (int i = book.Rating + 1; i <= 5; i++)
                             {
-                                <span class="fa fa-star"></span>
+                                <i class="fa-regular fa-star text-muted"></i>
                             }
                         </p>
+
                         <p class="card-text"><strong>Review:</strong> @book.Review</p>
                         <div class="mt-auto">
                             <label class="form-check-label me-2">Liked:</label>

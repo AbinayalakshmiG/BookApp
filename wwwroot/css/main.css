@@ -240,3 +240,44 @@ canvas {
   margin: 0 auto;
   padding: 0 15px;
 }
+
+/*Google book Search API*/
+/* Container modes */
+/* Grid view */
+#resultsContainer.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* List view: each result-item is a 2-col row */
+#resultsContainer.list .result-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+/* Thumbnail styling */
+#resultsContainer.list .list-thumb-col .thumb,
+#resultsContainer.grid .thumb {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Content column adjustments */
+#resultsContainer.list .list-content-col {
+    padding: 0;
+}
+
+/* Remove default card chrome in list mode */
+#resultsContainer.list .result-item.card {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+

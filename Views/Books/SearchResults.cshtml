@@ -1,33 +1,60 @@
-﻿<!-- File: Views/Books/Results.cshtml -->
-@model BookApp.Services.GoogleBooksResponse
+﻿@model BookApp.Services.GoogleBooksResponse
 @{
     ViewData["Title"] = "Search Results";
 }
 
-<h1>Results</h1>
-@if (Model?.Items?.Any() == true)
-{
-  <div class="row">
-    @foreach (var item in Model.Items)
-    {
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          @if (!string.IsNullOrEmpty(item.VolumeInfo.ImageLinks?.Thumbnail))
-          {
-            <img src="@item.VolumeInfo.ImageLinks.Thumbnail"
-                 class="card-img-top"
-                 alt="Cover" />
-          }
-          <div class="card-body">
-            <h5 class="card-title">@item.VolumeInfo.Title</h5>
-            <p class="card-text">@string.Join(", ", item.VolumeInfo.Authors)</p>
-          </div>
+<h1>Results for “@ViewBag.Query”</h1>
+
+<div class="mb-3">
+  <button id="gridViewBtn" class="btn btn-sm btn-outline-primary">Grid View</button>
+  <button id="listViewBtn" class="btn btn-sm btn-outline-secondary">List View</button>
+</div>
+
+<div id="resultsContainer" class="grid">
+  @foreach (var item in Model.Items)
+  {
+    <div class="result-item card">
+      @* COLUMN 1: thumbnail *@
+      @if (!string.IsNullOrEmpty(item.VolumeInfo.ImageLinks?.Thumbnail))
+      {
+        <div class="list-thumb-col">
+          <img src="@item.VolumeInfo.ImageLinks.Thumbnail"
+               class="thumb"
+               alt="Cover of @item.VolumeInfo.Title" />
         </div>
+      }
+      @* COLUMN 2: content *@
+      <div class="list-content-col card-body">
+        <h5 class="card-title">@item.VolumeInfo.Title</h5>
+        <p class="card-text text-muted">
+          @string.Join(", ", item.VolumeInfo.Authors)
+        </p>
+                @if (!string.IsNullOrWhiteSpace(item.VolumeInfo.Description))
+                {
+                    <p class="card-text small">
+                        @{
+                            var d = item.VolumeInfo.Description;
+                        }
+                        @(d.Length > 150
+                            ? d.Substring(0, 150) + "…"
+                            : d)
+                    </p>
+                }
       </div>
-    }
-  </div>
-}
-else
-{
-  <p>No results found.</p>
+    </div>
+  }
+</div>
+
+@section Scripts {
+  <script>
+    const container = document.getElementById('resultsContainer');
+    document.getElementById('gridViewBtn').addEventListener('click', () => {
+      container.classList.add('grid');
+      container.classList.remove('list');
+    });
+    document.getElementById('listViewBtn').addEventListener('click', () => {
+      container.classList.add('list');
+      container.classList.remove('grid');
+    });
+  </script>
 }
