@@ -12,12 +12,12 @@ BookLytics is a dynamic web application that allows users to explore, manage, an
 ---
 
 ## Features
-- **CRUD Operations**: Add, update, view, and delete book records.
-- **Search Integration**: Uses Google Books API to fetch book data based on title or keyword.
-- **Filtering & Sorting**: Sort books by title, filter by "Liked" status.
-- **Analytics Dashboard**: Displays interactive charts (e.g., genre distribution, ratings).
-- **About Us Page**: Displays team roles, contributions, and the project overview.
-- **Live Deployment**: Hosted on Azure App Service for public access.
+- **CRUD Operations**: Add, update, view, and delete book records.  
+- **Search Integration**: Uses Google Books API to fetch book data based on title or keyword.  
+- **Filtering & Sorting**: Sort books by title, filter by "Liked" status.  
+- **Analytics Dashboard**: Displays interactive charts (e.g., genre distribution, ratings).  
+- **About Us Page**: Displays team roles, contributions, and the project overview.  
+- **Live Deployment**: Hosted on Azure App Service for public access.  
 
 ---
 
@@ -25,19 +25,35 @@ BookLytics is a dynamic web application that allows users to explore, manage, an
 ```
 📂 BookApp
 ├── Controllers/
-│   └── BooksController.cs, HomeController.cs
+│   └── BooksController.cs, HomeController.cs, AccountController.cs
 ├── Models/
-│   └── Book.cs, User.cs
+│   └── Book.cs, User.cs, ErrorViewModel.cs
 ├── Services/
-│   └── BookService.cs, UserService.cs
+│   └── GoogleBookServices.cs, GoogleBookResponse.cs, IUserService.cs, JsonUserService.cs,	JsonBookRepository.cs, IGoogleBooksService.cs, IBookRepository.cs
 ├── Views/
-│   ├── Books/ (Index, Add, Edit)
-│   ├── Home/ (Index, About, SearchResults)
-│   └── Shared/ (_Layout.cshtml, _ViewStart.cshtml)
+│   ├── Books/ (Index, Analytics, Create, Delete, Details, Edit, Search, SearchResults)
+│   ├── Home/ (Index, About)
+|	├── Account/ (Login)
+|	├── Shared/ (_Layout.cshtml, _ValidationScriptsPartial.cshtml) 
+|	├── _ViewImports.cshtml
+│   └── _ViewStart.cshtml
+|
 ├── wwwroot/
 │   ├── css/
 │   ├── images/
-│   └── js/
+│   ├── js/
+│   └── lib/
+|	
+├── BookApp.csproj
+├── BookApp.csproj.user
+├── Program.cs
+├──	appsettings.Development.json
+├──	appsettings.json
+├──	books.json
+├──	users.json
+└──	README.md
+
+
 ```
 
 ---
@@ -110,6 +126,7 @@ Deployed the final MVC application to Azure, ensured deployment testing across d
 | API data mismatch | Parsed Google Books API responses to match app structure |
 | Styling inconsistencies post-conversion | Reapplied custom Bootstrap styling from static site into MVC Razor views |
 | Azure deployment failure due to .NET SDK | Resolved by upgrading target SDK and reconfiguring App Service pipeline |
+| Front End and Back and Integration | Resolved by creating a new Repo for full-stack app |
 
 ---
 
