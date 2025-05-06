@@ -25,14 +25,15 @@ BookLytics is a dynamic web application that allows users to explore, manage, an
 ```
 📂 BookApp
 ├── Controllers/
-│   └── BooksController.cs, HomeController.cs
+│   └── BooksController.cs, HomeController.cs, AccountController.cs
 ├── Models/
 │   └── Book.cs, User.cs
 ├── Services/
 │   └── BookService.cs, UserService.cs
 ├── Views/
-│   ├── Books/ (Index, Add, Edit)
-│   ├── Home/ (Index, About, SearchResults)
+│   ├── Books/ (Index, Add, Edit, Analytics)
+│   ├── Home/ (Index, About)
+│   ├── Account/ (Login)
 │   └── Shared/ (_Layout.cshtml, _ViewStart.cshtml)
 ├── wwwroot/
 │   ├── css/
