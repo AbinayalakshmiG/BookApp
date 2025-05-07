@@ -83,7 +83,7 @@ Book (BookID)
 ---
 
 ## Deployment
-**Live URL**: [https://booklytics-ezedc5bjcda2cgeb.canadacentral-01.azurewebsites.net/]([https://booklytics-ezedc5bjcda2cgeb.canadacentral-01.azurewebsites.net/](https://bookappteam5web-dxb5dfcbfabeetdq.canadacentral-01.azurewebsites.net/Account/Login)](https://bookappteam5web-dxb5dfcbfabeetdq.canadacentral-01.azurewebsites.net/)  
+**Live URL**: [[https://booklytics-ezedc5bjcda2cgeb.canadacentral-01.azurewebsites.net/](https://bookappteam5web-dxb5dfcbfabeetdq.canadacentral-01.azurewebsites.net/Account/Login)]
 **Platform**: Azure App Service  
 **Code**: [GitHub Repository](https://github.com/AbinayalakshmiG/BookApp)  
 
